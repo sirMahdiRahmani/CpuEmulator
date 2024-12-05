@@ -1,0 +1,33 @@
+{
+    "version": 8,
+    "configurePresets": [
+        {
+            "name": "UniTest",
+            "displayName": "GCC 13.2.0 x86_64-linux-gnu",
+            "description": "Using compilers: C = /usr/bin/gcc, CXX = /usr/bin/g++",
+            "binaryDir": "${sourceDir}/bin/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/bin/install/${presetName}",
+                "CMAKE_C_COMPILER": "/usr/bin/gcc",
+                "CMAKE_CXX_COMPILER": "/usr/bin/g++",
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "UniTest",
+            "description": "",
+            "displayName": "",
+            "configurePreset": "UniTest"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "UniTest",
+            "description": "",
+            "displayName": "",
+            "configurePreset": "UniTest"
+        }
+    ]
+}
