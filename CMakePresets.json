@@ -2,7 +2,7 @@
   "version": 8,
   "configurePresets": [
     {
-      "name": "CppCmake",
+      "name": "CpuEmulator",
       "displayName": "Linux",
       "description": "Using compilers: C = /usr/bin/gcc, CXX = /usr/bin/g++",
       "binaryDir": "${sourceDir}/out/Linux/build/${presetName}",
@@ -115,18 +115,18 @@
 
   "buildPresets": [
     {
-      "name": "CppCmake",
+      "name": "CpuEmulator",
       "description": "",
       "displayName": "",
-      "configurePreset": "CppCmake"
+      "configurePreset": "CpuEmulator"
     }
   ],
   "testPresets": [
     {
-      "name": "CppCmake",
+      "name": "CpuEmulator",
       "description": "",
       "displayName": "",
-      "configurePreset": "CppCmake"
+      "configurePreset": "CpuEmulator"
     }
   ]
 }
