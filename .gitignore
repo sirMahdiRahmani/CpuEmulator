@@ -1,0 +1,11 @@
+CMakeFiles/
+build/
+bin/
+out/
+.vscode/
+.idea/
+.vs/
+
+CMakeCache.txt
+*.cmake
+Makefile
