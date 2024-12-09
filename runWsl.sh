@@ -1,4 +1,4 @@
-cmake --preset CppCmake
-cmake --build --preset CppCmake
+cmake --preset CpuEmulator
+cmake --build --preset CpuEmulator
 echo "-------------------------------------------------"
-./out/Linux/build/CppCmake/CppCmake
+./out/Linux/build/CpuEmulator/CpuEmulator
