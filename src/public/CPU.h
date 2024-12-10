@@ -22,6 +22,8 @@ struct CPU
     Byte V : 1; // Overflow Status Flag
     Byte N : 1; // Negative Status Flag
 
+    static constexpr Byte INS_LDA_IM = 0xA9;
+
     void Reset(RAM& memory);
 
     // Read 1 Byte

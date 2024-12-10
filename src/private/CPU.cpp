@@ -1,6 +1,6 @@
 #include "CPU.h"
 
-void CPU::Reset(RAM& memory)
+void CPU::Reset(RAM &memory)
 {
     PC = 0xFFFC;
     SP = 0x0100;
@@ -9,7 +9,7 @@ void CPU::Reset(RAM& memory)
     memory.Initialize();
 }
 
-Byte CPU::FetchByte(u32& cycles, RAM& memory)
+Byte CPU::FetchByte(u32 &cycles, RAM &memory)
 {
     Byte data = memory[PC];
     PC++;
@@ -17,11 +17,24 @@ Byte CPU::FetchByte(u32& cycles, RAM& memory)
     return data;
 }
 
-void CPU::Execute(u32 cycles, RAM& memory)
+void CPU::Execute(u32 cycles, RAM &memory)
 {
     while (cycles > 0)
     {
         Byte instruction = FetchByte(cycles, memory);
-        (void)instruction;
+        switch (instruction)
+        {
+        case INS_LDA_IM:
+        {
+            Byte Value = FetchByte(cycles, memory);
+            A = Value;
+            Z = (A == 0);
+            N = (A & 0b10000000) > 0;
+        }
+        break;
+
+        default:
+            break;
+        }
     }
 }
