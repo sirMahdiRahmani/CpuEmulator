@@ -5,6 +5,7 @@ using Byte = unsigned char;
 using Word = unsigned short;
 
 using u32 = unsigned int;
+using s32 = signed int;
 
 
 struct CPU
@@ -37,5 +38,5 @@ struct CPU
     Word FetchWord(u32& cycles, RAM& memory);
     Byte ReadByte(u32& cycles, Byte Address, RAM& memory);
 
-    void Execute(u32 cycles, RAM& memory);
+    s32 Execute(u32 cycles, RAM& memory);
 };

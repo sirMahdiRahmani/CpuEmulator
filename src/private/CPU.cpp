@@ -1,7 +1,7 @@
 #include "CPU.h"
 #include "stdio.h"
 
-void CPU::Reset(RAM& memory)
+void CPU::Reset(RAM &memory)
 {
 	PC = 0xFFFC;
 	SP = 0x0100;
@@ -16,7 +16,7 @@ void CPU::LDASetStatus()
 	N = (A & 0b10000000) > 0;
 }
 
-Byte CPU::FetchByte(u32& cycles, RAM& memory)
+Byte CPU::FetchByte(u32 &cycles, RAM &memory)
 {
 	Byte data = memory[PC];
 	PC++;
@@ -24,34 +24,35 @@ Byte CPU::FetchByte(u32& cycles, RAM& memory)
 	return data;
 }
 
-Word CPU::FetchWord(u32& cycles, RAM& memory)
+Word CPU::FetchWord(u32 &cycles, RAM &memory)
 {
 	Word Data = memory[PC];
 	PC++;
 
 	Data |= (memory[PC] << 8);
 	PC++;
-	
+
 	cycles -= 2;
-	
+
 	return Data;
 }
 
-Byte CPU::ReadByte(u32& cycles, Byte Address, RAM& memory)
+Byte CPU::ReadByte(u32 &cycles, Byte Address, RAM &memory)
 {
 	Byte data = memory[Address];
 	cycles--;
 	return data;
 }
 
-void CPU::Execute(u32 cycles, RAM& memory)
+s32 CPU::Execute(u32 cycles, RAM &memory)
 {
+	s32 TotalCycles = cycles;
 	while (cycles > 0)
 	{
 		Byte instruction = FetchByte(cycles, memory);
 		switch (instruction)
 		{
-			
+
 		case INS_LDA_IM:
 		{
 			Byte Value = FetchByte(cycles, memory);
@@ -80,7 +81,7 @@ void CPU::Execute(u32 cycles, RAM& memory)
 
 		case INS_JSR:
 		{
-			Word SubroutineAddress= FetchWord(cycles, memory);
+			Word SubroutineAddress = FetchWord(cycles, memory);
 			memory.WriteWord(PC - 1, SP, cycles);
 			PC = SubroutineAddress;
 			cycles--;
@@ -94,4 +95,5 @@ void CPU::Execute(u32 cycles, RAM& memory)
 		break;
 		}
 	}
+	return TotalCycles;
 }
