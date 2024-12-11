@@ -66,6 +66,7 @@ void CPU::Execute(u32 cycles, RAM& memory)
 			A = ReadByte(cycles, ZeroPageAddress, memory);
 			LDASetStatus();
 		}
+		break;
 
 		case INS_LDA_ZPX:
 		{
@@ -75,6 +76,7 @@ void CPU::Execute(u32 cycles, RAM& memory)
 			A = ReadByte(cycles, ZeroPageAddress, memory);
 			LDASetStatus();
 		}
+		break;
 
 		case INS_JSR:
 		{
@@ -83,6 +85,7 @@ void CPU::Execute(u32 cycles, RAM& memory)
 			PC = SubroutineAddress;
 			cycles--;
 		}
+		break;
 
 		default:
 		{
