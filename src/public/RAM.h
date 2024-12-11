@@ -12,5 +12,7 @@ struct RAM
 
     void Initialize();
 
-    Byte operator[](u32 address);
+    Byte operator[](u32 address) const;
+    Byte& operator[](u32 address);
+    void WriteWord(Word value, u32 address, u32& cycle);
 };

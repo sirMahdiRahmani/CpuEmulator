@@ -22,12 +22,20 @@ struct CPU
     Byte V : 1; // Overflow Status Flag
     Byte N : 1; // Negative Status Flag
 
-    static constexpr Byte INS_LDA_IM = 0xA9;
+    static constexpr Byte 
+        INS_LDA_IM = 0xA9,
+        INS_LDA_ZP = 0xA5,
+        INS_LDA_ZPX = 0xB5,
+        INS_JSR = 0x20;
 
     void Reset(RAM& memory);
 
+    void LDASetStatus();
+
     // Read 1 Byte
     Byte FetchByte(u32& cycles, RAM& memory);
+    Word FetchWord(u32& cycles, RAM& memory);
+    Byte ReadByte(u32& cycles, Byte Address, RAM& memory);
 
     void Execute(u32 cycles, RAM& memory);
 };

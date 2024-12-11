@@ -8,8 +8,21 @@ void RAM::Initialize()
     }
 }
 
-Byte RAM::operator[](u32 address)
+Byte RAM::operator[](u32 address) const
 {
     //! Assert here address < MAX_MEM
     return Data[address];
+}
+
+Byte& RAM::operator[](u32 address)
+{
+    //! Assert here address < MAX_MEM
+    return Data[address];
+}
+
+void RAM::WriteWord(Word value, u32 address, u32& cycles)
+{
+    Data[address] = value & 0xFF;
+    Data[address + 1] = (value >> 8);
+    cycles -= 2;
 }
