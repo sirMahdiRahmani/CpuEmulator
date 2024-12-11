@@ -3,9 +3,9 @@
 #include "CPU.h"
 #include "RAM.h"
 
-#define TEST 1
+#define Test 1
 
-# if TEST == 1
+# if Test == 1
 
 TEST_F(CpuEmulatorTest, LDAImmediateCanLoadValueInARegister)
 {
