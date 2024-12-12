@@ -46,7 +46,7 @@ Byte CPU::ReadByte(u32 &cycles, Byte Address, RAM &memory)
 
 s32 CPU::Execute(u32 cycles, RAM &memory)
 {
-	s32 TotalCycles = cycles;
+	s32 cyclesRequested = cycles;
 	while (cycles > 0)
 	{
 		Byte instruction = FetchByte(cycles, memory);
@@ -84,6 +84,7 @@ s32 CPU::Execute(u32 cycles, RAM &memory)
 			Word SubroutineAddress = FetchWord(cycles, memory);
 			memory.WriteWord(PC - 1, SP, cycles);
 			PC = SubroutineAddress;
+			SP += 2;
 			cycles--;
 		}
 		break;
@@ -95,5 +96,6 @@ s32 CPU::Execute(u32 cycles, RAM &memory)
 		break;
 		}
 	}
-	return TotalCycles;
+	const s32 NumCyclesUsed = cyclesRequested - cycles;
+	return NumCyclesUsed;
 }
